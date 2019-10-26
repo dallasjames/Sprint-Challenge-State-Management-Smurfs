@@ -1,19 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
-import App from "./components/App";
 
-const rootReducer = combineReducers({
-})
+import rootReducer from './components/reducer/getSmurfs';
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger))
+import App from './components/App'
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
+
+
+const rootElement = document.getElementById('root');
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>
-, document.getElementById("root"));
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootElement
+);
