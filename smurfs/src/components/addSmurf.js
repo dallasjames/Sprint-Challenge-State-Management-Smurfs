@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addSmurf } from "./action/getSmurfs";
 
-const AddSmurf = () => {
+const AddSmurf = (props) => {
   const [state, setState] = useState({ name: "", age: "", height: "" });
   
   const onSubmit = event => {
     event.preventDefault();
+    props.addSmurf(state);
     setState({ name: "", age: "", height: "" });
     console.log(state)
 };
@@ -36,7 +37,7 @@ const AddSmurf = () => {
         value={state.height}
         onChange={valueChange}
       />
-      <button onClick={onSubmit}>Add Smurf</button>
+      <button>Add Smurf</button>
     </form>
   );
 };

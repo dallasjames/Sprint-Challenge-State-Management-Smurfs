@@ -11,8 +11,8 @@ const SmurfList = props => {
   return (
     <div>
       {props.error && <p>{props.error}</p>}
-      {props.SmurfList.map(smurf => (
-        <Smurf key={smurf.id} smurf={smurf} />
+      {props.SmurfList.map((smurf, i) => (
+        <Smurf key={i} smurf={smurf} />
       ))}
       <button onClick={props.fetchSmurfs}>refresh</button>
     </div>

@@ -28,9 +28,10 @@ const reducer = (state = initialState, action) => {
         isFetching: false
       };
       case ADD_SMURF:
+        console.log(action.payload)
           return {
             ...state,
-            SmurfList: action.payload,
+            SmurfList: [...state.SmurfList, action.payload],
             error: action.payload,
             isFetching: false
           };
